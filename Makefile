@@ -8,7 +8,7 @@ cxxstd=c++11
 
 BUILD=build
 
-SOURCES=src/pugixml.cpp $(filter-out tests/fuzz_%,$(wildcard tests/*.cpp))
+SOURCES=src/pugixml.cpp
 LIBRARY=$(BUILD)/libpugixml.a
 
 VERSION=$(shell sed -n 's/.*version \(.*\).*/\1/p' src/pugiconfig.hpp)
@@ -97,4 +97,4 @@ $(BUILD)/%.o: %
 docs/%.html: docs/%.adoc $$(shell sed -n 's/include\:\:\(.*\)\[.*/docs\/\1/p' docs/%.adoc)
 	asciidoctor -b html5 -a version=$(VERSION) $< -o $@
 
-.PHONY: all test clean release .FORCE
+.PHONY: all test clean release docs .FORCE
